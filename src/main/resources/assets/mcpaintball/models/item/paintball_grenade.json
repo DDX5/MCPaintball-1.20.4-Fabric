@@ -1,0 +1,94 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "mcpaintball:item/grenades/grenade"
+  },
+	"display": {
+		"thirdperson_righthand": {
+			"translation": [0, 2, 0],
+			"scale": [0.25, 0.25, 0.25]
+		},
+		"thirdperson_lefthand": {
+			"translation": [0, 2, 0],
+			"scale": [0.25, 0.25, 0.25]
+		},
+		"firstperson_righthand": {
+			"translation": [0, 1.5, 0],
+			"scale": [0.25, 0.25, 0.25]
+		},
+		"firstperson_lefthand": {
+			"translation": [0, 1.5, 0],
+			"scale": [0.25, 0.25, 0.25]
+		},
+		"ground": {
+			"translation": [0, 1, 0],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"gui": {
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"head": {
+			"translation": [0, 8, 0],
+			"scale": [0.25, 0.25, 0.255]
+		},
+		"fixed": {
+			"scale": [0.5, 0.5, 0.5]
+		}
+	},
+  "overrides": [
+    {
+      "predicate": {
+        "mcpaintball:team": 0.01
+      },
+      "model": "mcpaintball:item/utility/grenades/red_grenade"
+    },
+    {
+      "predicate": {
+        "mcpaintball:team": 0.02
+      },
+      "model": "mcpaintball:item/utility/grenades/green_grenade"
+    },
+    {
+      "predicate": {
+        "mcpaintball:team": 0.03
+      },
+      "model": "mcpaintball:item/utility/grenades/blue_grenade"
+    },
+    {
+      "predicate": {
+        "mcpaintball:team": 0.04
+      },
+      "model": "mcpaintball:item/utility/grenades/magenta_grenade"
+    },
+    {
+      "predicate": {
+        "mcpaintball:team": 0.05
+      },
+      "model": "mcpaintball:item/utility/grenades/pink_grenade"
+    },
+    {
+      "predicate": {
+        "mcpaintball:team": 0.06
+      },
+      "model": "mcpaintball:item/utility/grenades/purple_grenade"
+    },
+    {
+      "predicate": {
+        "mcpaintball:team": 0.07
+      },
+      "model": "mcpaintball:item/utility/grenades/lime_grenade"
+    },
+    {
+      "predicate": {
+        "mcpaintball:team": 0.08
+      },
+      "model": "mcpaintball:item/utility/grenades/light_blue_grenade"
+    },
+    {
+      "predicate": {
+        "mcpaintball:team": 0.09
+      },
+      "model": "mcpaintball:item/utility/grenades/cyan_grenade"
+    }
+  ]
+}

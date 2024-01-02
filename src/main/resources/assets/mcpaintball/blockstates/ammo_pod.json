@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "enabled=true": {
+      "model": "mcpaintball:block/ammo_pod"
+    },
+    "enabled=false": {
+      "model": "mcpaintball:block/ammo_pod_off"
+    }
+  }
+}

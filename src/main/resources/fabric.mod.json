@@ -1,0 +1,37 @@
+{
+	"schemaVersion": 1,
+	"id": "mcpaintball",
+	"version": "${version}",
+	"name": "MCPaintball",
+	"description": "Minecraft paintball mod adds a vanilla way to paintball and have fun with friends.",
+	"authors": [
+		"Multicoder"
+	],
+	"contact": {
+		"homepage": "https://modrinth.com/mod/mc-paintball",
+		"sources": "https://github.com/DDX5/MCPaintball-1.20.4-Fabric",
+		"issues": "https://github.com/DDX5/MCPaintball-1.20.4-Fabric/issues"
+	},
+	"license": "GPLv3",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"org.multicoder.mcpaintball.MCPaintball"
+		],
+		"client": [
+			"org.multicoder.mcpaintball.MCPaintballClient"
+		],
+		"fabric-datagen": [
+			"org.multicoder.mcpaintball.MCPaintballDataGenerator"
+		]
+	},
+	"mixins": [
+		"mcpaintball.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.15.3",
+		"minecraft": "~1.20.4",
+		"java": ">=17",
+		"fabric-api": "*"
+	}
+}

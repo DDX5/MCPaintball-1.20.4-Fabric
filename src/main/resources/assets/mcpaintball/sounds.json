@@ -1,0 +1,50 @@
+{
+  "shot": {
+    "subtitle": "subtitle.mcpaintball.shot",
+    "sounds": [
+      "mcpaintball:shot"
+    ]
+  },
+  "bazooka": {
+    "subtitle": "subtitle.mcpaintball.bazooka",
+    "sounds": [
+      "mcpaintball:bazooka"
+    ]
+  },
+  "hit": {
+    "subtitle": "subtitle.mcpaintball.hit",
+    "sounds": [
+      "mcpaintball:hit"
+    ]
+  },
+  "splat": {
+    "subtitle": "subtitle.mcpaintball.splat",
+    "sounds": [
+      "mcpaintball:splat"
+    ]
+  },
+  "c4_added": {
+    "subtitle": "subtitle.mcpaintball.c4_added",
+    "sounds": [
+      "mcpaintball:c4_added"
+    ]
+  },
+  "c4_explode": {
+    "subtitle": "subtitle.mcpaintball.c4_explode",
+    "sounds": [
+      "mcpaintball:c4_explode"
+    ]
+  },
+  "c4_removed": {
+    "subtitle": "subtitle.mcpaintball.c4_removed",
+    "sounds": [
+      "mcpaintball:c4_removed"
+    ]
+  },
+  "grenade": {
+    "subtitle": "subtitle.mcpaintball.grenade",
+    "sounds": [
+      "mcpaintball:grenade"
+    ]
+  }
+}
