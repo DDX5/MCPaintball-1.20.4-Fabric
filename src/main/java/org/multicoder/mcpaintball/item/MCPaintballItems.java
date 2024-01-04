@@ -8,7 +8,11 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import org.multicoder.mcpaintball.MCPaintball;
+import org.multicoder.mcpaintball.item.ammo.BasicAmmoItem;
+import org.multicoder.mcpaintball.item.ammo.RocketAmmoItem;
+import org.multicoder.mcpaintball.item.ammo.ShellAmmoItem;
 import org.multicoder.mcpaintball.item.grenade.*;
+import org.multicoder.mcpaintball.item.weapons.*;
 
 public class MCPaintballItems
 {

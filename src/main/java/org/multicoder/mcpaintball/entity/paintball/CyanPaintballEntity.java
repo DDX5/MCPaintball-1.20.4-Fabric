@@ -2,7 +2,6 @@ package org.multicoder.mcpaintball.entity.paintball;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.decoration.ArmorStandEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
@@ -11,10 +10,9 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.world.World;
-import org.multicoder.mcpaintball.MCPaintball;
 import org.multicoder.mcpaintball.MCPaintballSounds;
 import org.multicoder.mcpaintball.entity.MCPaintballEntities;
-import org.multicoder.mcpaintball.utility.IEntityDataSaver;
+import org.multicoder.mcpaintball.utility.interfaces.IEntityDataSaver;
 import org.multicoder.mcpaintball.world.PaintballMatchData;
 
 

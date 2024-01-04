@@ -1,4 +1,4 @@
-package org.multicoder.mcpaintball.item;
+package org.multicoder.mcpaintball.item.weapons;
 
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.Entity;
@@ -13,24 +13,22 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
+import org.multicoder.mcpaintball.MCPaintball;
 import org.multicoder.mcpaintball.MCPaintballSounds;
-import org.multicoder.mcpaintball.utility.IEntityDataSaver;
+import org.multicoder.mcpaintball.item.MCPaintballItems;
+import org.multicoder.mcpaintball.utility.interfaces.IEntityDataSaver;
 import org.multicoder.mcpaintball.utility.PaintballTeam;
+import org.multicoder.mcpaintball.utility.interfaces.IReloadable;
 import org.multicoder.mcpaintball.world.PaintballMatchData;
 
-public class SniperItem extends ReloadableItem
+public class BazookaItem extends Item implements IReloadable
 {
 
-    public SniperItem()
+    public BazookaItem()
     {
-        super(new Settings().maxDamage(6));
+        super(new Settings().maxDamage(4));
     }
 
-    @Override
-    public ItemStack GetAmmoType()
-    {
-        return new ItemStack(MCPaintballItems.BASIC_AMMO);
-    }
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand)
@@ -48,11 +46,11 @@ public class SniperItem extends ReloadableItem
                     if(Held.getDamage() != Held.getMaxDamage())
                     {
                         PaintballTeam team = PaintballTeam.values()[compound.getInt("team")];
-                        PersistentProjectileEntity arrow = team.getPaintball(user,world);
-                        arrow.setVelocity(user,user.getPitch(),user.getYaw(),user.getRoll(),5f,0f);
+                        PersistentProjectileEntity arrow = team.getPaintballRocket(user,world);
+                        arrow.setVelocity(user,user.getPitch(),user.getYaw(),user.getRoll(),3f,0f);
                         world.spawnEntity(arrow);
-                        world.playSound(null,user.getBlockPos(), MCPaintballSounds.SHOT, SoundCategory.PLAYERS,1f,1f);
-                        user.getItemCooldownManager().set(this,60);
+                        world.playSound(null,user.getBlockPos(), MCPaintballSounds.BAZOOKA, SoundCategory.PLAYERS,1f,1f);
+                        user.getItemCooldownManager().set(this,40);
                         Held.setDamage((Held.getDamage() + 1));
                     }
                     else
@@ -81,5 +79,11 @@ public class SniperItem extends ReloadableItem
             }
         }
         super.inventoryTick(stack, world, entity, slot, selected);
+    }
+
+    @Override
+    public ItemStack getReloadItem()
+    {
+        return new ItemStack(MCPaintballItems.ROCKET_AMMO);
     }
 }

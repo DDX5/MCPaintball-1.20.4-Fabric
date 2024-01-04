@@ -1,4 +1,4 @@
-package org.multicoder.packets;
+package org.multicoder.mcpaintball.network.packets;
 
 import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.minecraft.entity.player.PlayerInventory;
@@ -8,8 +8,9 @@ import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
-import org.multicoder.mcpaintball.item.ReloadableItem;
+import org.multicoder.mcpaintball.utility.interfaces.IReloadable;
 
 public class ReloadC2SPacket
 {
@@ -18,38 +19,32 @@ public class ReloadC2SPacket
     {
         Item Held = player.getStackInHand(Hand.MAIN_HAND).getItem();
         ItemStack HeldStack = player.getStackInHand(Hand.MAIN_HAND);
-        if(Held instanceof ReloadableItem)
+        if(Held instanceof IReloadable)
         {
-            ItemStack Filter = ((ReloadableItem) Held).GetAmmoType();
+            ItemStack Filter = ((IReloadable) Held).getReloadItem();
             PlayerInventory Inventory = player.getInventory();
-            if(Inventory.contains(Filter)){
+            if(Inventory.contains(Filter))
+            {
                 int Index = Inventory.indexOf(Filter);
                 ItemStack PlayerAmmo = Inventory.getStack(Index);
-                int Damage = HeldStack.getDamage();
-                int AmmoCount = PlayerAmmo.getCount();
-                if((AmmoCount - Damage) >= 0)
+                if(HeldStack.getDamage() < PlayerAmmo.getCount())
                 {
-                    PlayerAmmo.setCount(AmmoCount - Damage);
-                    player.getItemCooldownManager().set(HeldStack.getItem(),60);
-                    while(player.getItemCooldownManager().isCoolingDown(HeldStack.getItem()))
-                    {
-
-                    }
+                    PlayerAmmo.setCount(PlayerAmmo.getCount() - HeldStack.getDamage());
                     HeldStack.setDamage(0);
                 }
                 else
                 {
+                    int Remaining = HeldStack.getDamage() - PlayerAmmo.getCount();
+                    HeldStack.setDamage(Remaining);
                     Inventory.removeStack(Index);
-                    player.getItemCooldownManager().set(HeldStack.getItem(),60);
-                    while(player.getItemCooldownManager().isCoolingDown(HeldStack.getItem()))
-                    {
-
-                    }
-                    HeldStack.setDamage(Damage - AmmoCount);
                 }
+                player.getItemCooldownManager().set(HeldStack.getItem(),60);
+                player.sendMessage(Text.translatable("text.mcpaintball.reloading"),true);
+                while(player.getItemCooldownManager().isCoolingDown(HeldStack.getItem())) {}
             }
         }
-        else{
+        else
+        {
             return;
         }
     }

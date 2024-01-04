@@ -9,8 +9,9 @@ import org.multicoder.mcpaintball.commands.MatchCommands;
 import org.multicoder.mcpaintball.commands.arguments.CommandArguments;
 import org.multicoder.mcpaintball.commands.TeamCommands;
 import org.multicoder.mcpaintball.entity.MCPaintballEntities;
+import org.multicoder.mcpaintball.events.MCPaintballServerLoaded;
 import org.multicoder.mcpaintball.item.MCPaintballItems;
-import org.multicoder.mcpaintball.utility.DeathPersist;
+import org.multicoder.mcpaintball.events.DeathPersist;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

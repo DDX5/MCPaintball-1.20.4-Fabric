@@ -1,9 +1,9 @@
-package org.multicoder.mcpaintball;
+package org.multicoder.mcpaintball.network;
 
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.util.Identifier;
-import org.multicoder.packets.ReloadC2SPacket;
+import org.multicoder.mcpaintball.MCPaintball;
+import org.multicoder.mcpaintball.network.packets.ReloadC2SPacket;
 
 public class MCPaintballNetworking
 {

@@ -8,7 +8,7 @@ import net.minecraft.server.command.*;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import org.multicoder.mcpaintball.commands.arguments.PaintballClassArgument;
-import org.multicoder.mcpaintball.utility.IEntityDataSaver;
+import org.multicoder.mcpaintball.utility.interfaces.IEntityDataSaver;
 import org.multicoder.mcpaintball.utility.PaintballClass;
 import org.multicoder.mcpaintball.utility.PaintballTeam;
 import org.multicoder.mcpaintball.commands.arguments.PaintballTeamArgument;

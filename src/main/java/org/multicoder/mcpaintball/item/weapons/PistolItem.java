@@ -1,34 +1,29 @@
-package org.multicoder.mcpaintball.item;
+package org.multicoder.mcpaintball.item.weapons;
 
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
+import org.multicoder.mcpaintball.MCPaintball;
 import org.multicoder.mcpaintball.MCPaintballSounds;
-import org.multicoder.mcpaintball.utility.IEntityDataSaver;
-import org.multicoder.mcpaintball.utility.PaintballTeam;
+import org.multicoder.mcpaintball.item.MCPaintballItems;
+import org.multicoder.mcpaintball.utility.*;
+import org.multicoder.mcpaintball.utility.interfaces.IEntityDataSaver;
+import org.multicoder.mcpaintball.utility.interfaces.IReloadable;
 import org.multicoder.mcpaintball.world.PaintballMatchData;
 
-public class ShotgunItem extends ReloadableItem
+public class PistolItem extends Item implements IReloadable
 {
 
-    public ShotgunItem()
+    public PistolItem()
     {
         super(new Settings().maxDamage(16));
-    }
-
-    @Override
-    public ItemStack GetAmmoType() {
-        return new ItemStack(MCPaintballItems.SHELL_AMMO);
     }
 
     @Override
@@ -48,16 +43,10 @@ public class ShotgunItem extends ReloadableItem
                     {
                         PaintballTeam team = PaintballTeam.values()[compound.getInt("team")];
                         PersistentProjectileEntity arrow = team.getPaintball(user,world);
-                        PersistentProjectileEntity arrow1 = team.getPaintball(user,world);
-                        PersistentProjectileEntity arrow2 = team.getPaintball(user,world);
-                        arrow.setVelocity(user,user.getPitch(),user.getYaw() + 16,user.getRoll(),5f,0f);
-                        arrow1.setVelocity(user,user.getPitch(),user.getYaw(),user.getRoll(),5f,0f);
-                        arrow2.setVelocity(user,user.getPitch(),user.getYaw() - 16,user.getRoll(),5f,0f);
+                        arrow.setVelocity(user,user.getPitch(),user.getYaw(),user.getRoll(),3f,0f);
                         world.spawnEntity(arrow);
-                        world.spawnEntity(arrow1);
-                        world.spawnEntity(arrow2);
-                        world.playSound(null,user.getBlockPos(), MCPaintballSounds.SHOT, SoundCategory.PLAYERS,1f,1f);
-                        user.getItemCooldownManager().set(this,25);
+                        world.playSound(null,user.getBlockPos(),MCPaintballSounds.SHOT, SoundCategory.PLAYERS,1f,1f);
+                        user.getItemCooldownManager().set(this,20);
                         Held.setDamage((Held.getDamage() + 1));
                     }
                     else
@@ -87,4 +76,11 @@ public class ShotgunItem extends ReloadableItem
         }
         super.inventoryTick(stack, world, entity, slot, selected);
     }
+
+    @Override
+    public ItemStack getReloadItem()
+    {
+        return new ItemStack(MCPaintballItems.BASIC_AMMO);
+    }
+
 }

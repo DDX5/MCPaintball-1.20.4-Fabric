@@ -6,9 +6,8 @@ import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
-import net.minecraft.network.PacketByteBuf;
 import org.lwjgl.glfw.GLFW;
-import org.multicoder.mcpaintball.MCPaintballNetworking;
+import org.multicoder.mcpaintball.network.MCPaintballNetworking;
 
 public class PlayerKeyInputs
 {

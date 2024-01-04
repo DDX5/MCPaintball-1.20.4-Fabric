@@ -1,4 +1,4 @@
-package org.multicoder.mcpaintball.item;
+package org.multicoder.mcpaintball.item.weapons;
 
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.Entity;
@@ -13,22 +13,20 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
+import org.multicoder.mcpaintball.MCPaintball;
 import org.multicoder.mcpaintball.MCPaintballSounds;
-import org.multicoder.mcpaintball.utility.IEntityDataSaver;
+import org.multicoder.mcpaintball.item.MCPaintballItems;
+import org.multicoder.mcpaintball.utility.interfaces.IEntityDataSaver;
 import org.multicoder.mcpaintball.utility.PaintballTeam;
+import org.multicoder.mcpaintball.utility.interfaces.IReloadable;
 import org.multicoder.mcpaintball.world.PaintballMatchData;
 
-public class RifleItem extends ReloadableItem
+public class RifleItem extends Item implements IReloadable
 {
 
     public RifleItem()
     {
         super(new Settings().maxDamage(64));
-    }
-
-    @Override
-    public ItemStack GetAmmoType() {
-        return new ItemStack(MCPaintballItems.BASIC_AMMO);
     }
 
     @Override
@@ -81,4 +79,10 @@ public class RifleItem extends ReloadableItem
         }
         super.inventoryTick(stack, world, entity, slot, selected);
     }
+
+    @Override
+    public ItemStack getReloadItem() {
+        return new ItemStack(MCPaintballItems.BASIC_AMMO);
+    }
+
 }

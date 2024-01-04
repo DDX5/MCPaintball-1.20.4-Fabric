@@ -13,7 +13,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.explosion.Explosion;
 import org.multicoder.mcpaintball.entity.MCPaintballEntities;
 import org.multicoder.mcpaintball.item.MCPaintballItems;
-import org.multicoder.mcpaintball.utility.IEntityDataSaver;
+import org.multicoder.mcpaintball.utility.interfaces.IEntityDataSaver;
 import org.multicoder.mcpaintball.utility.PaintballTeam;
 import org.multicoder.mcpaintball.world.PaintballMatchData;
 

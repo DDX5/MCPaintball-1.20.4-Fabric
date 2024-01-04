@@ -1,4 +1,4 @@
-package org.multicoder.mcpaintball.utility;
+package org.multicoder.mcpaintball.utility.interfaces;
 
 import net.minecraft.nbt.NbtCompound;
 

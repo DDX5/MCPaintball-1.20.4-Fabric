@@ -1,4 +1,4 @@
-package org.multicoder.mcpaintball.item;
+package org.multicoder.mcpaintball.item.ammo;
 
 import net.minecraft.item.Item;
 

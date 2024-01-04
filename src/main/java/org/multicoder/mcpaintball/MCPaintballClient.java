@@ -12,6 +12,7 @@ import org.multicoder.mcpaintball.entity.grenade.*;
 import org.multicoder.mcpaintball.entity.paintball.*;
 import org.multicoder.mcpaintball.entity.renderers.paintball.*;
 import org.multicoder.mcpaintball.entity.rockets.*;
+import org.multicoder.mcpaintball.network.MCPaintballNetworking;
 import org.multicoder.mcpaintball.player.PlayerKeyInputs;
 
 public class MCPaintballClient implements ClientModInitializer

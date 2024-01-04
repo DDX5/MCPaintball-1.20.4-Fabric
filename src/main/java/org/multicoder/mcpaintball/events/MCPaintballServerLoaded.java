@@ -1,8 +1,7 @@
-package org.multicoder.mcpaintball;
+package org.multicoder.mcpaintball.events;
 
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.minecraft.server.MinecraftServer;
-import org.multicoder.mcpaintball.utility.MCPaintballConfig;
+import org.multicoder.mcpaintball.config.MCPaintballConfig;
 import org.multicoder.mcpaintball.world.PaintballMatchData;
 
 public class MCPaintballServerLoaded

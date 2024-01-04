@@ -5,15 +5,10 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.world.GameRules;
-import org.multicoder.mcpaintball.commands.arguments.PaintballClassArgument;
-import org.multicoder.mcpaintball.commands.arguments.PaintballTeamArgument;
-import org.multicoder.mcpaintball.utility.IEntityDataSaver;
-import org.multicoder.mcpaintball.utility.MCPaintballConfig;
-import org.multicoder.mcpaintball.utility.PaintballClass;
+import org.multicoder.mcpaintball.config.MCPaintballConfig;
 import org.multicoder.mcpaintball.utility.PaintballTeam;
 import org.multicoder.mcpaintball.world.PaintballMatchData;
 

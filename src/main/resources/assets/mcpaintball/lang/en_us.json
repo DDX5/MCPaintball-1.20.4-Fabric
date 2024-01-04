@@ -54,6 +54,7 @@
   "text.mcpaintball.ammo": "You Have %s Ammo Left",
   "text.mcpaintball.reload": "Please Reload",
   "text.mcpaintball.match_error": "Match Has Not Started",
+  "text.mcpaintball.reloading": "Reloading Weapon",
 
   "Comment_5": "Subtitles",
   "subtitle.mcpaintball.shot": "Shot Fired",
