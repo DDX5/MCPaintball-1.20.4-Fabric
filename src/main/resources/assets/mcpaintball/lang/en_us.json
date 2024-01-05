@@ -21,7 +21,21 @@
   "item.mcpaintball.rocket_ammo": "Bazooka Ammo",
   "item.mcpaintball.shell_ammo": "Shotgun Ammo",
 
-  "Comment_2": "Entities",
+  "item.mcpaintball.remote": "Explosives Remote",
+
+  "Comment_2": "Blocks",
+  "block.mcpaintball.ammo_pod": "Ammo Pod",
+  "block.mcpaintball.red_explosive": "Red C4",
+  "block.mcpaintball.green_explosive": "Green C4",
+  "block.mcpaintball.blue_explosive": "Blue C4",
+  "block.mcpaintball.cyan_explosive": "Cyan C4",
+  "block.mcpaintball.magenta_explosive": "Magenta C4",
+  "block.mcpaintball.lime_explosive": "Lime C4",
+  "block.mcpaintball.light_blue_explosive": "Light Blue C4",
+  "block.mcpaintball.pink_explosive": "Pink C4",
+  "block.mcpaintball.purple_explosive": "Purple C4",
+
+  "Comment_3": "Entities",
   "entity.mcpaintball.red_paintball": "Red Paintball",
   "entity.mcpaintball.green_paintball": "Green Paintball",
   "entity.mcpaintball.blue_paintball": "Blue Paintball",
@@ -42,7 +56,7 @@
   "entity.mcpaintball.pink_grenade": "Pink Grenade",
   "entity.mcpaintball.purple_grenade": "Purple Grenade",
 
-  "Comment_3": "Command Responses",
+  "Comment_4": "Command Responses",
   "mcpaintball.command.response.team.set": "Your team has been set to %s",
   "mcpaintball.command.response.class.set": "Your class has been set to %s",
   "mcpaintball.command.response.team.winner": "The Winning Team Is %s",
@@ -50,13 +64,15 @@
   "mcpaintball.command.response.match.end": "Match Has Ended (Keeping Inventory Is Now Disabled)",
   "mcpaintball.command.response.match.error": "You Do Not Have Permission To Run This Command",
 
-  "Comment_4": "Player Messages",
+  "Comment_5": "Player Messages",
   "text.mcpaintball.ammo": "You Have %s Ammo Left",
   "text.mcpaintball.reload": "Please Reload",
   "text.mcpaintball.match_error": "Match Has Not Started",
   "text.mcpaintball.reloading": "Reloading Weapon",
+  "text.mcpaintball.no_tag": "This Item Has No Valid Targets",
+  "text.mcpaintball.invalid_team": "Invalid Team",
 
-  "Comment_5": "Subtitles",
+  "Comment_6": "Subtitles",
   "subtitle.mcpaintball.shot": "Shot Fired",
   "subtitle.mcpaintball.bazooka": "Bazooka Fired",
   "subtitle.mcpaintball.hit": "Player Hit",
@@ -66,7 +82,7 @@
   "subtitle.mcpaintball.c4_explode": "C4 Detonated",
   "subtitle.mcpaintball.grenade": "Grenade Thrown",
 
-  "Comment_6": "Keybindings",
+  "Comment_7": "Keybindings",
   "key.mcpaintball.reload": "Reload Held Weapon",
   "key.category.mcpaintball.gameplay": "MCPaintball Gameplay"
 }

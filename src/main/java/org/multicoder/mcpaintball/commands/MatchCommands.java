@@ -15,102 +15,82 @@ import org.multicoder.mcpaintball.world.PaintballMatchData;
 import java.util.ArrayList;
 import java.util.List;
 
-import static net.minecraft.server.command.CommandManager.*;
+import static net.minecraft.server.command.CommandManager.RegistrationEnvironment;
+import static net.minecraft.server.command.CommandManager.literal;
 
-public class MatchCommands
-{
-    public static void registerMatchCommands(CommandDispatcher<ServerCommandSource> dispatcher, CommandRegistryAccess access, RegistrationEnvironment environment)
-    {
+public class MatchCommands {
+    public static void registerMatchCommands(CommandDispatcher<ServerCommandSource> dispatcher, CommandRegistryAccess access, RegistrationEnvironment environment) {
         dispatcher.register(literal("mcpaintball").then(literal("match").then(literal("start").executes(MatchCommands::StartMatch)))).createBuilder().build();
         dispatcher.register(literal("mcpaintball").then(literal("match").then(literal("end").executes(MatchCommands::EndMatch)))).createBuilder().build();
         dispatcher.register(literal("mcpaintball").then(literal("match").then(literal("winner").executes(MatchCommands::Winner)))).createBuilder().build();
     }
 
     private static int Winner(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
-        if(MCPaintballConfig.MATCH_SERVER_OP)
-        {
-            if(context.getSource().getPlayerOrThrow().hasPermissionLevel(2))
-            {
+        if (MCPaintballConfig.MATCH_SERVER_OP) {
+            if (context.getSource().getPlayerOrThrow().hasPermissionLevel(2)) {
                 PaintballMatchData data = PaintballMatchData.getServerState(context.getSource().getServer());
                 List<Integer> Points = new ArrayList<>();
-                for(int Point : data.Points)
-                {
+                for (int Point : data.Points) {
                     Points.add(Point);
                 }
                 int Winner = Points.indexOf(Points.stream().max(Integer::compare).orElseThrow());
                 PaintballTeam WinningTeam = PaintballTeam.values()[Winner];
-                context.getSource().getServer().getPlayerManager().broadcast(Text.translatable("mcpaintball.command.response.team.winner",WinningTeam.name()),false);
-                data.Points = new int[] {0,0,0,0,0,0,0,0,0};
-            }
-            else
-            {
+                context.getSource().getServer().getPlayerManager().broadcast(Text.translatable("mcpaintball.command.response.team.winner", WinningTeam.name()), false);
+                data.Points = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
+            } else {
                 context.getSource().getPlayerOrThrow().sendMessage(Text.translatable("mcpaintball.command.response.match.error").formatted(Formatting.BOLD).formatted(Formatting.DARK_RED));
             }
-        }
-        else
-        {
+        } else {
             PaintballMatchData data = PaintballMatchData.getServerState(context.getSource().getServer());
             List<Integer> Points = new ArrayList<>();
-            for(int Point : data.Points)
-            {
+            for (int Point : data.Points) {
                 Points.add(Point);
             }
             int Winner = Points.indexOf(Points.stream().max(Integer::compare).orElseThrow());
             PaintballTeam WinningTeam = PaintballTeam.values()[Winner];
-            context.getSource().getServer().getPlayerManager().broadcast(Text.translatable("mcpaintball.command.response.team.winner",WinningTeam.name()),false);
-            data.Points = new int[] {0,0,0,0,0,0,0,0,0};
+            context.getSource().getServer().getPlayerManager().broadcast(Text.translatable("mcpaintball.command.response.team.winner", WinningTeam.name()), false);
+            data.Points = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
         }
         return 0;
     }
 
     private static int EndMatch(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
-        if(MCPaintballConfig.MATCH_SERVER_OP)
-        {
-            if (context.getSource().getPlayerOrThrow().hasPermissionLevel(2))
-            {
-                context.getSource().getServer().getGameRules().get(GameRules.KEEP_INVENTORY).set(false,context.getSource().getServer());
+        if (MCPaintballConfig.MATCH_SERVER_OP) {
+            if (context.getSource().getPlayerOrThrow().hasPermissionLevel(2)) {
+                context.getSource().getServer().getGameRules().get(GameRules.KEEP_INVENTORY).set(false, context.getSource().getServer());
                 PaintballMatchData data = PaintballMatchData.getServerState(context.getSource().getServer());
                 data.IsEnabled = false;
-                context.getSource().getServer().getPlayerManager().broadcast(Text.translatable("mcpaintball.command.response.match.end"),true);
+                context.getSource().getServer().getPlayerManager().broadcast(Text.translatable("mcpaintball.command.response.match.end"), true);
 
-            }
-            else
-            {
+            } else {
                 context.getSource().getPlayerOrThrow().sendMessage(Text.translatable("mcpaintball.command.response.match.error").formatted(Formatting.BOLD).formatted(Formatting.DARK_RED));
             }
-        }
-        else
-        {
-            context.getSource().getServer().getGameRules().get(GameRules.KEEP_INVENTORY).set(false,context.getSource().getServer());
+        } else {
+            context.getSource().getServer().getGameRules().get(GameRules.KEEP_INVENTORY).set(false, context.getSource().getServer());
             PaintballMatchData data = PaintballMatchData.getServerState(context.getSource().getServer());
             data.IsEnabled = false;
-            context.getSource().getServer().getPlayerManager().broadcast(Text.translatable("mcpaintball.command.response.match.end"),true);
+            context.getSource().getServer().getPlayerManager().broadcast(Text.translatable("mcpaintball.command.response.match.end"), true);
 
         }
         return 0;
     }
 
     private static int StartMatch(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
-        if(MCPaintballConfig.MATCH_SERVER_OP) {
-            if (context.getSource().getPlayerOrThrow().hasPermissionLevel(2))
-            {
-                context.getSource().getServer().getGameRules().get(GameRules.KEEP_INVENTORY).set(true,context.getSource().getServer());
+        if (MCPaintballConfig.MATCH_SERVER_OP) {
+            if (context.getSource().getPlayerOrThrow().hasPermissionLevel(2)) {
+                context.getSource().getServer().getGameRules().get(GameRules.KEEP_INVENTORY).set(true, context.getSource().getServer());
                 PaintballMatchData data = PaintballMatchData.getServerState(context.getSource().getServer());
                 data.IsEnabled = true;
-                context.getSource().getServer().getPlayerManager().broadcast(Text.translatable("mcpaintball.command.response.match.start"),true);
+                context.getSource().getServer().getPlayerManager().broadcast(Text.translatable("mcpaintball.command.response.match.start"), true);
 
-            }
-            else
-            {
+            } else {
                 context.getSource().getPlayerOrThrow().sendMessage(Text.translatable("mcpaintball.command.response.match.error").formatted(Formatting.BOLD).formatted(Formatting.DARK_RED));
             }
-        }
-        else
-        {
-            context.getSource().getServer().getGameRules().get(GameRules.KEEP_INVENTORY).set(true,context.getSource().getServer());
+        } else {
+            context.getSource().getServer().getGameRules().get(GameRules.KEEP_INVENTORY).set(true, context.getSource().getServer());
             PaintballMatchData data = PaintballMatchData.getServerState(context.getSource().getServer());
             data.IsEnabled = true;
-            context.getSource().getServer().getPlayerManager().broadcast(Text.translatable("mcpaintball.command.response.match.start"),true);
+            context.getSource().getServer().getPlayerManager().broadcast(Text.translatable("mcpaintball.command.response.match.start"), true);
 
         }
         return 0;

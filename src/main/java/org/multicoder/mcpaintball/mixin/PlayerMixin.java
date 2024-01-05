@@ -10,26 +10,25 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Entity.class)
-public abstract class PlayerMixin implements IEntityDataSaver
-{
+public abstract class PlayerMixin implements IEntityDataSaver {
     private NbtCompound persistentData;
+
     @Override
     public NbtCompound getPersistentData() {
-        if(this.persistentData == null) {
+        if (this.persistentData == null) {
             this.persistentData = new NbtCompound();
         }
         return persistentData;
     }
 
     @Override
-    public void setPersistentData(NbtCompound persistentData)
-    {
+    public void setPersistentData(NbtCompound persistentData) {
         this.persistentData = persistentData;
     }
 
     @Inject(method = "writeNbt", at = @At("HEAD"))
     protected void injectWriteMethod(NbtCompound nbt, CallbackInfoReturnable info) {
-        if(persistentData != null) {
+        if (persistentData != null) {
             nbt.put("mcpaintball.data", persistentData);
         }
     }

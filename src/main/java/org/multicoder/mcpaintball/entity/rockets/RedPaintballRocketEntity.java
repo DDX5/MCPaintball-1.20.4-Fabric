@@ -2,68 +2,50 @@ package org.multicoder.mcpaintball.entity.rockets;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.TargetPredicate;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.passive.CowEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.SplashPotionItem;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
 import net.minecraft.world.explosion.Explosion;
-import org.multicoder.mcpaintball.MCPaintball;
 import org.multicoder.mcpaintball.config.MCPaintballConfig;
 import org.multicoder.mcpaintball.entity.MCPaintballEntities;
-import org.multicoder.mcpaintball.utility.interfaces.IEntityDataSaver;
 import org.multicoder.mcpaintball.utility.PaintballTeam;
+import org.multicoder.mcpaintball.utility.interfaces.IEntityDataSaver;
 import org.multicoder.mcpaintball.world.PaintballMatchData;
 
 import java.util.List;
 
-public class RedPaintballRocketEntity extends PersistentProjectileEntity
-{
+public class RedPaintballRocketEntity extends PersistentProjectileEntity {
 
-    public RedPaintballRocketEntity(EntityType<? extends PersistentProjectileEntity> type, World world)
-    {
+    public RedPaintballRocketEntity(EntityType<? extends PersistentProjectileEntity> type, World world) {
         super(type, world, ItemStack.EMPTY);
     }
 
-    public RedPaintballRocketEntity(LivingEntity owner, World world)
-    {
+    public RedPaintballRocketEntity(LivingEntity owner, World world) {
         super(MCPaintballEntities.RED_PAINTBALL_ROCKET, owner, world, ItemStack.EMPTY);
     }
 
     @Override
-    protected void onBlockHit(BlockHitResult blockHitResult)
-    {
-        if(!this.getEntityWorld().isClient())
-        {
+    protected void onBlockHit(BlockHitResult blockHitResult) {
+        if (!this.getEntityWorld().isClient()) {
             BlockPos Position = blockHitResult.getBlockPos();
             PaintballMatchData levelData = PaintballMatchData.getServerState(this.getServer());
             Explosion E;
-            if(MCPaintballConfig.ROCKETS_BREAK_BLOCKS) {
-                E = this.getEntityWorld().createExplosion(this,Position.getX(),Position.getY(),Position.getZ(),5, World.ExplosionSourceType.TNT);
-            }
-            else{
-                E = this.getEntityWorld().createExplosion(this,Position.getX(),Position.getY(),Position.getZ(),5, World.ExplosionSourceType.NONE);
+            if (MCPaintballConfig.BLOCKS_BREAK) {
+                E = this.getEntityWorld().createExplosion(this, Position.getX(), Position.getY(), Position.getZ(), 5, World.ExplosionSourceType.TNT);
+            } else {
+                E = this.getEntityWorld().createExplosion(this, Position.getX(), Position.getY(), Position.getZ(), 5, World.ExplosionSourceType.NONE);
             }
             List<PlayerEntity> Players = E.getAffectedPlayers().keySet().stream().toList();
-            for(PlayerEntity player : Players)
-            {
+            for (PlayerEntity player : Players) {
                 NbtCompound data = ((IEntityDataSaver) player).getPersistentData();
-                if(data.contains("team"))
-                {
+                if (data.contains("team")) {
                     int Team = data.getInt("team");
-                    if(Team != PaintballTeam.BLUE.ordinal())
-                    {
-                        player.damage(this.getEntityWorld().getDamageSources().arrow(this,this.getOwner()), 5f);
+                    if (Team != PaintballTeam.BLUE.ordinal()) {
+                        player.damage(this.getEntityWorld().getDamageSources().arrow(this, this.getOwner()), 5f);
                         int[] Cache = levelData.Points;
                         Cache[PaintballTeam.BLUE.ordinal()] += 1;
                         levelData.Points = Cache;

@@ -8,17 +8,15 @@ import net.minecraft.util.Identifier;
 import org.multicoder.mcpaintball.entity.paintball.MagentaPaintballEntity;
 
 @Environment(EnvType.CLIENT)
-public class MagentaPaintballEntityRenderer extends ProjectileEntityRenderer<MagentaPaintballEntity>
-{
+public class MagentaPaintballEntityRenderer extends ProjectileEntityRenderer<MagentaPaintballEntity> {
     public static Identifier TEXTURE = new Identifier("mcpaintball:textures/entity/projectiles/paintball/magenta_paintball.png");
-    public MagentaPaintballEntityRenderer(EntityRendererFactory.Context context)
-    {
+
+    public MagentaPaintballEntityRenderer(EntityRendererFactory.Context context) {
         super(context);
     }
 
     @Override
-    public Identifier getTexture(MagentaPaintballEntity entity)
-    {
+    public Identifier getTexture(MagentaPaintballEntity entity) {
         return TEXTURE;
     }
 }

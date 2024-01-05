@@ -8,17 +8,15 @@ import net.minecraft.util.Identifier;
 import org.multicoder.mcpaintball.entity.paintball.LightBluePaintballEntity;
 
 @Environment(EnvType.CLIENT)
-public class LightBluePaintballEntityRenderer extends ProjectileEntityRenderer<LightBluePaintballEntity>
-{
+public class LightBluePaintballEntityRenderer extends ProjectileEntityRenderer<LightBluePaintballEntity> {
     public static Identifier TEXTURE = new Identifier("mcpaintball:textures/entity/projectiles/paintball/light_blue_paintball.png");
-    public LightBluePaintballEntityRenderer(EntityRendererFactory.Context context)
-    {
+
+    public LightBluePaintballEntityRenderer(EntityRendererFactory.Context context) {
         super(context);
     }
 
     @Override
-    public Identifier getTexture(LightBluePaintballEntity entity)
-    {
+    public Identifier getTexture(LightBluePaintballEntity entity) {
         return TEXTURE;
     }
 }

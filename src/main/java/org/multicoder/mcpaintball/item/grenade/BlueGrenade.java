@@ -10,27 +10,23 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 import org.multicoder.mcpaintball.MCPaintballSounds;
 import org.multicoder.mcpaintball.entity.grenade.BlueGrenadeEntity;
-import org.multicoder.mcpaintball.entity.grenade.RedGrenadeEntity;
 import org.multicoder.mcpaintball.world.PaintballMatchData;
 
-public class BlueGrenade extends Item
-{
-    public BlueGrenade()
-    {
+public class BlueGrenade extends Item {
+    public BlueGrenade() {
         super(new Settings());
     }
 
     @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand)
-    {
-        if(!world.isClient()) {
+    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+        if (!world.isClient()) {
             PaintballMatchData data = PaintballMatchData.getServerState(world.getServer());
             if (data.IsEnabled) {
-                ThrownItemEntity E = new BlueGrenadeEntity(user,world);
-                E.setVelocity(user,user.getPitch(),user.getYaw(),user.getRoll(),3,0);
+                ThrownItemEntity E = new BlueGrenadeEntity(user, world);
+                E.setVelocity(user, user.getPitch(), user.getYaw(), user.getRoll(), 3, 0);
                 world.spawnEntity(E);
-                user.getItemCooldownManager().set(this,30);
-                world.playSound(null,user.getBlockPos(), MCPaintballSounds.GRENADE, SoundCategory.PLAYERS,1,1);
+                user.getItemCooldownManager().set(this, 30);
+                world.playSound(null, user.getBlockPos(), MCPaintballSounds.GRENADE, SoundCategory.PLAYERS, 1, 1);
             }
         }
         return super.use(world, user, hand);

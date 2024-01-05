@@ -7,14 +7,11 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.suggestion.Suggestions;
 import com.mojang.brigadier.suggestion.SuggestionsBuilder;
 import org.multicoder.mcpaintball.utility.PaintballClass;
-import org.multicoder.mcpaintball.utility.PaintballTeam;
 
 import java.util.concurrent.CompletableFuture;
 
-public class PaintballClassArgument implements ArgumentType<PaintballClass>
-{
-    private PaintballClassArgument()
-    {
+public class PaintballClassArgument implements ArgumentType<PaintballClass> {
+    private PaintballClassArgument() {
 
     }
 
@@ -34,10 +31,8 @@ public class PaintballClassArgument implements ArgumentType<PaintballClass>
 
 
     @Override
-    public <S> CompletableFuture<Suggestions> listSuggestions(CommandContext<S> context, SuggestionsBuilder builder)
-    {
-        for(PaintballClass team : PaintballClass.values())
-        {
+    public <S> CompletableFuture<Suggestions> listSuggestions(CommandContext<S> context, SuggestionsBuilder builder) {
+        for (PaintballClass team : PaintballClass.values()) {
             builder.suggest(team.name());
         }
         return builder.buildFuture();

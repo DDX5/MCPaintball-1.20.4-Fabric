@@ -16,39 +16,32 @@ import org.multicoder.mcpaintball.utility.interfaces.IEntityDataSaver;
 import org.multicoder.mcpaintball.world.PaintballMatchData;
 
 
-public class CyanPaintballEntity extends PersistentProjectileEntity
-{
-    public CyanPaintballEntity(EntityType<? extends PersistentProjectileEntity> type, World world)
-    {
+public class CyanPaintballEntity extends PersistentProjectileEntity {
+    public CyanPaintballEntity(EntityType<? extends PersistentProjectileEntity> type, World world) {
         super(type, world, ItemStack.EMPTY);
     }
 
-    public CyanPaintballEntity(LivingEntity owner, World world)
-    {
-            super(MCPaintballEntities.CYAN_PAINTBALL, owner, world, ItemStack.EMPTY);
+    public CyanPaintballEntity(LivingEntity owner, World world) {
+        super(MCPaintballEntities.CYAN_PAINTBALL, owner, world, ItemStack.EMPTY);
     }
+
     @Override
-    protected void onEntityHit(EntityHitResult entityHitResult)
-    {
-        if(!this.getEntityWorld().isClient())
-        {
+    protected void onEntityHit(EntityHitResult entityHitResult) {
+        if (!this.getEntityWorld().isClient()) {
             PaintballMatchData data = PaintballMatchData.getServerState(this.getServer());
-            if(data.IsEnabled)
-            {
-                if(entityHitResult.getEntity() instanceof PlayerEntity Target)
-                {
+            if (data.IsEnabled) {
+                if (entityHitResult.getEntity() instanceof PlayerEntity Target) {
                     PlayerEntity Shooter = (PlayerEntity) this.getOwner();
                     NbtCompound ShooterData = ((IEntityDataSaver) Shooter).getPersistentData();
                     NbtCompound TargetData = ((IEntityDataSaver) Target).getPersistentData();
-                    if(ShooterData.contains("team") && TargetData.contains("team"))
-                    {
-                        if(ShooterData.getInt("team") != TargetData.getInt("team"))
-                        {
+                    if (ShooterData.contains("team") && TargetData.contains("team")) {
+                        if (ShooterData.getInt("team") != TargetData.getInt("team")) {
                             int Index = ShooterData.getInt("team");
                             int[] P = data.Points;
                             P[Index] += 1;
                             data.Points = P;
-                            this.getEntityWorld().playSound(null,this.getOwner().getBlockPos(),MCPaintballSounds.HIT, SoundCategory.PLAYERS,1,1);
+                            Target.damage(this.getEntityWorld().getDamageSources().arrow(this, this.getOwner()), 2.5f);
+                            this.getEntityWorld().playSound(null, this.getOwner().getBlockPos(), MCPaintballSounds.HIT, SoundCategory.PLAYERS, 1, 1);
                         }
                     }
                 }
@@ -57,6 +50,7 @@ public class CyanPaintballEntity extends PersistentProjectileEntity
             }
         }
     }
+
     @Override
     protected SoundEvent getHitSound() {
         return MCPaintballSounds.SPLAT;

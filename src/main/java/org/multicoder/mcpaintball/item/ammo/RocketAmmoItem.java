@@ -2,11 +2,9 @@ package org.multicoder.mcpaintball.item.ammo;
 
 import net.minecraft.item.Item;
 
-public class RocketAmmoItem extends Item
-{
+public class RocketAmmoItem extends Item {
 
-    public RocketAmmoItem()
-    {
+    public RocketAmmoItem() {
         super(new Settings());
     }
 }

@@ -6,20 +6,17 @@ import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.ProjectileEntityRenderer;
 import net.minecraft.util.Identifier;
 import org.multicoder.mcpaintball.entity.rockets.LimePaintballRocketEntity;
-import org.multicoder.mcpaintball.entity.rockets.RedPaintballRocketEntity;
 
 @Environment(EnvType.CLIENT)
-public class LimePaintballRocketEntityRenderer extends ProjectileEntityRenderer<LimePaintballRocketEntity>
-{
+public class LimePaintballRocketEntityRenderer extends ProjectileEntityRenderer<LimePaintballRocketEntity> {
     public static Identifier TEXTURE = new Identifier("mcpaintball:textures/entity/projectiles/paintball_heavy/lime_paintball_heavy.png");
-    public LimePaintballRocketEntityRenderer(EntityRendererFactory.Context context)
-    {
+
+    public LimePaintballRocketEntityRenderer(EntityRendererFactory.Context context) {
         super(context);
     }
 
     @Override
-    public Identifier getTexture(LimePaintballRocketEntity entity)
-    {
+    public Identifier getTexture(LimePaintballRocketEntity entity) {
         return TEXTURE;
     }
 }

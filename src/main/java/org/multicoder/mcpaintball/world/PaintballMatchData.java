@@ -6,22 +6,19 @@ import net.minecraft.world.PersistentState;
 import net.minecraft.world.PersistentStateManager;
 import org.multicoder.mcpaintball.MCPaintball;
 
-public class PaintballMatchData extends PersistentState
-{
+public class PaintballMatchData extends PersistentState {
+    private static final Type<PaintballMatchData> type = new Type<>(PaintballMatchData::new, PaintballMatchData::createFromNBT, null);
     public boolean IsEnabled;
     public int[] Points;
 
-    private static Type<PaintballMatchData> type = new Type<>(PaintballMatchData::new,PaintballMatchData::createFromNBT,null);
-
-    public static PaintballMatchData getServerState(MinecraftServer server)
-    {
+    public static PaintballMatchData getServerState(MinecraftServer server) {
         PersistentStateManager manager = server.getOverworld().getPersistentStateManager();
         PaintballMatchData data = manager.getOrCreate(type, MCPaintball.MOD_ID);
         data.markDirty();
         return data;
     }
-    public static PaintballMatchData createFromNBT(NbtCompound nbt)
-    {
+
+    public static PaintballMatchData createFromNBT(NbtCompound nbt) {
         PaintballMatchData data = new PaintballMatchData();
         data.IsEnabled = nbt.getBoolean("enabled");
         data.Points = nbt.getIntArray("points");
@@ -30,10 +27,9 @@ public class PaintballMatchData extends PersistentState
 
 
     @Override
-    public NbtCompound writeNbt(NbtCompound nbt)
-    {
-        nbt.putBoolean("enabled",IsEnabled);
-        nbt.putIntArray("points",Points);
+    public NbtCompound writeNbt(NbtCompound nbt) {
+        nbt.putBoolean("enabled", IsEnabled);
+        nbt.putIntArray("points", Points);
         return nbt;
     }
 }

@@ -10,10 +10,8 @@ import org.multicoder.mcpaintball.utility.PaintballTeam;
 
 import java.util.concurrent.CompletableFuture;
 
-public class PaintballTeamArgument implements ArgumentType<PaintballTeam>
-{
-    private PaintballTeamArgument()
-    {
+public class PaintballTeamArgument implements ArgumentType<PaintballTeam> {
+    private PaintballTeamArgument() {
 
     }
 
@@ -33,10 +31,8 @@ public class PaintballTeamArgument implements ArgumentType<PaintballTeam>
 
 
     @Override
-    public <S> CompletableFuture<Suggestions> listSuggestions(CommandContext<S> context, SuggestionsBuilder builder)
-    {
-        for(PaintballTeam team : PaintballTeam.values())
-        {
+    public <S> CompletableFuture<Suggestions> listSuggestions(CommandContext<S> context, SuggestionsBuilder builder) {
+        for (PaintballTeam team : PaintballTeam.values()) {
             builder.suggest(team.name());
         }
         return builder.buildFuture();

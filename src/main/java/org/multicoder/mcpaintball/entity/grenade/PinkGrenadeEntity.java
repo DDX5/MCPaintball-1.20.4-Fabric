@@ -13,43 +13,36 @@ import net.minecraft.world.World;
 import net.minecraft.world.explosion.Explosion;
 import org.multicoder.mcpaintball.entity.MCPaintballEntities;
 import org.multicoder.mcpaintball.item.MCPaintballItems;
-import org.multicoder.mcpaintball.utility.interfaces.IEntityDataSaver;
 import org.multicoder.mcpaintball.utility.PaintballTeam;
+import org.multicoder.mcpaintball.utility.interfaces.IEntityDataSaver;
 import org.multicoder.mcpaintball.world.PaintballMatchData;
 
 import java.util.List;
 
-public class PinkGrenadeEntity extends ThrownItemEntity
-{
+public class PinkGrenadeEntity extends ThrownItemEntity {
 
-    public PinkGrenadeEntity(EntityType<? extends ThrownItemEntity> entityType, World world)
-    {
+    public PinkGrenadeEntity(EntityType<? extends ThrownItemEntity> entityType, World world) {
         super(entityType, world);
     }
 
 
-    public PinkGrenadeEntity(LivingEntity livingEntity, World world)
-    {
+    public PinkGrenadeEntity(LivingEntity livingEntity, World world) {
         super(MCPaintballEntities.PINK_GRENADE, livingEntity, world);
     }
 
     @Override
-    protected void onCollision(HitResult hitResult)
-    {
-        if(!this.getEntityWorld().isClient())
-        {
+    protected void onCollision(HitResult hitResult) {
+        if (!this.getEntityWorld().isClient()) {
             PaintballMatchData levelData = PaintballMatchData.getServerState(this.getServer());
             BlockPos Position = BlockPos.ofFloored(hitResult.getPos());
-            Explosion E = this.getEntityWorld().createExplosion(this,Position.getX(),Position.getY(),Position.getZ(),5, World.ExplosionSourceType.TNT);
+            Explosion E = this.getEntityWorld().createExplosion(this, Position.getX(), Position.getY(), Position.getZ(), 5, World.ExplosionSourceType.TNT);
             List<PlayerEntity> Players = E.getAffectedPlayers().keySet().stream().toList();
-            for(PlayerEntity player : Players)
-            {
+            for (PlayerEntity player : Players) {
                 NbtCompound data = ((IEntityDataSaver) player).getPersistentData();
-                if(data.contains("team"))
-                {
+                if (data.contains("team")) {
                     int Team = data.getInt("team");
-                    if(Team != PaintballTeam.PINK.ordinal())
-                    {
+                    if (Team != PaintballTeam.PINK.ordinal()) {
+                        player.damage(this.getEntityWorld().getDamageSources().explosion(this, this.getOwner()), 2.5f);
                         int[] Cache = levelData.Points;
                         Cache[PaintballTeam.PINK.ordinal()] += 1;
                         levelData.Points = Cache;
@@ -63,8 +56,7 @@ public class PinkGrenadeEntity extends ThrownItemEntity
     }
 
     @Override
-    protected Item getDefaultItem()
-    {
+    protected Item getDefaultItem() {
         return MCPaintballItems.PINK_GRENADE;
     }
 
