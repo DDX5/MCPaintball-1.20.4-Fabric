@@ -15,6 +15,7 @@ import org.multicoder.mcpaintball.item.MCPaintballItems;
 public class MCPaintballBlocks {
 
     public static final Block AMMO_POD = registerBlock("ammo_pod", new AmmoPodBlock());
+    public static final Block EXPLOSIVE_STATION = registerBlock("explosive_station", new ExplosiveStationBlock());
     public static final Block RED_EXPLOSIVE = registerBlock("red_explosive", new ExplosiveBlock());
     public static final Block GREEN_EXPLOSIVE = registerBlock("green_explosive", new ExplosiveBlock());
     public static final Block BLUE_EXPLOSIVE = registerBlock("blue_explosive", new ExplosiveBlock());
@@ -42,6 +43,7 @@ public class MCPaintballBlocks {
         entries.add(LIGHT_BLUE_EXPLOSIVE.asItem());
         entries.add(PINK_EXPLOSIVE.asItem());
         entries.add(PURPLE_EXPLOSIVE.asItem());
+        entries.add(EXPLOSIVE_STATION.asItem());
     }
 
     public static void registerModBlocks() {

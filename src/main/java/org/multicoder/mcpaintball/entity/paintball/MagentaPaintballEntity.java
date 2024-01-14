@@ -31,7 +31,7 @@ public class MagentaPaintballEntity extends PersistentProjectileEntity {
     protected void onEntityHit(EntityHitResult entityHitResult) {
         if (!this.getEntityWorld().isClient()) {
             PaintballMatchData data = PaintballMatchData.getServerState(this.getServer());
-            if (data.IsEnabled) {
+            if (data.Started) {
                 if (entityHitResult.getEntity() instanceof PlayerEntity Target) {
                     PlayerEntity Shooter = (PlayerEntity) this.getOwner();
                     NbtCompound ShooterData = ((IEntityDataSaver) Shooter).getPersistentData();

@@ -25,6 +25,7 @@
 			"org.multicoder.mcpaintball.MCPaintballDataGenerator"
 		]
 	},
+	"accessWidener" : "mcpaintball.accesswidener",
 	"mixins": [
 		"mcpaintball.mixins.json"
 	],

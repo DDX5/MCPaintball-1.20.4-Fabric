@@ -1,10 +1,17 @@
 package org.multicoder.mcpaintball.config;
 
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.Util;
+import net.minecraft.util.WorldSavePath;
+import net.minecraft.world.World;
+import org.multicoder.mcpaintball.MCPaintball;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.nio.file.FileSystem;
+import java.nio.file.OpenOption;
+import java.nio.file.Path;
 import java.util.Objects;
 import java.util.Properties;
 
@@ -13,10 +20,19 @@ public class MCPaintballConfig {
     public static boolean MATCH_SERVER_OP;
     public static boolean BLOCKS_BREAK;
 
-    public static void LoadOrCreate(MinecraftServer server) throws Exception {
-        String Prefix = server.getRunDirectory().getAbsolutePath();
-        Prefix += "/config/mcpaintball.properties";
+    public static void LoadOrCreate(MinecraftServer server) throws Exception
+    {
+        String Prefix = server.getSavePath(WorldSavePath.ROOT).toAbsolutePath().toString();
+        Prefix = Prefix.substring(0,Prefix.length() - 2);
+        String FolderPrefix = Prefix + "\\config\\";
+        Prefix += "\\config\\mcpaintball.properties";
+        MCPaintball.LOGGER.info("Path: " + Prefix);
         File Folder = new File(Prefix);
+        if(!new File(FolderPrefix).exists())
+        {
+            MCPaintball.LOGGER.info("Creating Directory");
+            new File(FolderPrefix).mkdir();
+        }
         if (!Folder.exists()) {
             Folder.createNewFile();
             FileOutputStream FOS = new FileOutputStream(Folder);
@@ -25,7 +41,7 @@ public class MCPaintballConfig {
             Config.setProperty("gameplay.match_commands_op", "True");
             Config.setProperty("gameplay.world.blocks_break", "True");
             MATCH_SERVER_OP = true;
-            BLOCKS_BREAK = true;
+            BLOCKS_BREAK = false;
             Config.store(FOS, "The Configuration For MCPaintball");
         } else {
             FileInputStream FIS = new FileInputStream(Folder);
@@ -40,7 +56,7 @@ public class MCPaintballConfig {
                 Config.setProperty("gameplay.world.blocks_break", "True");
                 Config.store(FOS, "The Configuration For MCPaintball");
                 MATCH_SERVER_OP = true;
-                BLOCKS_BREAK = true;
+                BLOCKS_BREAK = false;
             } else {
                 MATCH_SERVER_OP = Boolean.parseBoolean(Config.getProperty("gameplay.match_commands.op"));
                 BLOCKS_BREAK = Boolean.parseBoolean(Config.getProperty("gameplay.world.blocks_break"));

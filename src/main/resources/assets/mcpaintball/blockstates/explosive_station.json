@@ -1,0 +1,58 @@
+{
+  "variants": {
+    "enabled=true,team=0": {
+      "model": "mcpaintball:block/red_explosive_station_on"
+    },
+    "enabled=false,team=0": {
+      "model": "mcpaintball:block/red_explosive_station_off"
+    },
+    "enabled=true,team=1": {
+      "model": "mcpaintball:block/green_explosive_station_on"
+    },
+    "enabled=false,team=1": {
+      "model": "mcpaintball:block/green_explosive_station_off"
+    },
+    "enabled=true,team=2": {
+      "model": "mcpaintball:block/blue_explosive_station_on"
+    },
+    "enabled=false,team=2": {
+      "model": "mcpaintball:block/blue_explosive_station_off"
+    },
+    "enabled=true,team=3": {
+      "model": "mcpaintball:block/cyan_explosive_station_on"
+    },
+    "enabled=false,team=3": {
+      "model": "mcpaintball:block/cyan_explosive_station_off"
+    },
+    "enabled=true,team=4": {
+      "model": "mcpaintball:block/magenta_explosive_station_on"
+    },
+    "enabled=false,team=4": {
+      "model": "mcpaintball:block/magenta_explosive_station_off"
+    },
+    "enabled=true,team=5": {
+      "model": "mcpaintball:block/lime_explosive_station_on"
+    },
+    "enabled=false,team=5": {
+      "model": "mcpaintball:block/lime_explosive_station_off"
+    },
+    "enabled=true,team=6": {
+      "model": "mcpaintball:block/light_blue_explosive_station_on"
+    },
+    "enabled=false,team=6": {
+      "model": "mcpaintball:block/light_blue_explosive_station_off"
+    },
+    "enabled=true,team=7": {
+      "model": "mcpaintball:block/pink_explosive_station_on"
+    },
+    "enabled=false,team=7": {
+      "model": "mcpaintball:block/pink_explosive_station_off"
+    },
+    "enabled=true,team=8": {
+      "model": "mcpaintball:block/purple_explosive_station_on"
+    },
+    "enabled=false,team=8": {
+      "model": "mcpaintball:block/purple_explosive_station_off"
+    }
+  }
+}

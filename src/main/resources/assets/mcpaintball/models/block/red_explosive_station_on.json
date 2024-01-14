@@ -1,0 +1,36 @@
+{
+	"textures": {
+		"0": "mcpaintball:item/plain/silver",
+		"1": "mcpaintball:item/plain/black",
+		"10": "mcpaintball:item/plain/red",
+		"particle": "mcpaintball:item/plain/silver"
+	},
+	"elements": [
+		{
+			"name": "Base",
+			"from": [1, 0, 1],
+			"to": [15, 9, 15],
+			"faces": {
+				"north": {"uv": [2, 7, 16, 16], "texture": "#10"},
+				"east": {"uv": [0, 7, 14, 16], "texture": "#10"},
+				"south": {"uv": [2, 7, 16, 16], "texture": "#10"},
+				"west": {"uv": [2, 7, 16, 16], "texture": "#10"},
+				"up": {"uv": [2, 2, 16, 16], "rotation": 180, "texture": "#10"},
+				"down": {"uv": [16, 2, 2, 16], "texture": "#10"}
+			}
+		},
+		{
+			"name": "Lid",
+			"from": [1, 9, 1],
+			"to": [15, 14, 15],
+			"faces": {
+				"north": {"uv": [2, 3.5, 16, 8.5], "texture": "#0"},
+				"east": {"uv": [2, 3.5, 16, 8.5], "texture": "#0"},
+				"south": {"uv": [2, 3.5, 16, 8.5], "texture": "#0"},
+				"west": {"uv": [2, 3.5, 16, 8.5], "texture": "#0"},
+				"up": {"uv": [2, 2, 16, 16], "texture": "#0"},
+				"down": {"uv": [2, 2, 16, 16], "texture": "#0"}
+			}
+		}
+	]
+}

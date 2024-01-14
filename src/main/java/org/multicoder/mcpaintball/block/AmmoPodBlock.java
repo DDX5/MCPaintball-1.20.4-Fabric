@@ -10,6 +10,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
+import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
@@ -24,6 +25,7 @@ import org.multicoder.mcpaintball.world.PaintballMatchData;
 
 public class AmmoPodBlock extends Block {
     public static final BooleanProperty ENABLED = BooleanProperty.of("enabled");
+    public static final IntProperty TEAM = IntProperty.of("team", 0, 8);
 
     public AmmoPodBlock() {
         super(Settings.create().dropsNothing().pistonBehavior(PistonBehavior.BLOCK).nonOpaque().hardness(2.5f));
@@ -37,31 +39,33 @@ public class AmmoPodBlock extends Block {
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (!world.isClient() && state.get(ENABLED)) {
-            if (PaintballMatchData.getServerState(world.getServer()).IsEnabled) {
+            if (PaintballMatchData.getServerState(world.getServer()).Started) {
                 NbtCompound Data = ((IEntityDataSaver) player).getPersistentData();
                 if (Data.contains("class")) {
-                    PaintballClass paintballClass = PaintballClass.values()[Data.getInt("class")];
-                    switch (paintballClass) {
-                        case STANDARD, SNIPER -> {
-                            ItemStack Ammo_1 = new ItemStack(MCPaintballItems.BASIC_AMMO, 24);
-                            ItemStack Ammo_2 = new ItemStack(MCPaintballItems.BASIC_AMMO, 32);
-                            player.dropItem(Ammo_2, true);
-                            player.dropItem(Ammo_1, true);
-                            world.setBlockState(pos, state.cycle(ENABLED));
-                        }
-                        case HEAVY -> {
-                            ItemStack Ammo_1 = new ItemStack(MCPaintballItems.ROCKET_AMMO, 24);
-                            ItemStack Ammo_2 = new ItemStack(MCPaintballItems.BASIC_AMMO, 32);
-                            player.dropItem(Ammo_2, true);
-                            player.dropItem(Ammo_1, true);
-                            world.setBlockState(pos, state.cycle(ENABLED));
-                        }
-                        case MEDIC, ENGINEER -> {
-                            ItemStack Ammo_1 = new ItemStack(MCPaintballItems.SHELL_AMMO, 24);
-                            ItemStack Ammo_2 = new ItemStack(MCPaintballItems.BASIC_AMMO, 32);
-                            player.dropItem(Ammo_2, true);
-                            player.dropItem(Ammo_1, true);
-                            world.setBlockState(pos, state.cycle(ENABLED));
+                    if (Data.getInt("team") == state.get(TEAM).intValue()) {
+                        PaintballClass paintballClass = PaintballClass.values()[Data.getInt("class")];
+                        switch (paintballClass) {
+                            case STANDARD, SNIPER -> {
+                                ItemStack Ammo_1 = new ItemStack(MCPaintballItems.BASIC_AMMO, 24);
+                                ItemStack Ammo_2 = new ItemStack(MCPaintballItems.BASIC_AMMO, 32);
+                                player.dropItem(Ammo_2, true);
+                                player.dropItem(Ammo_1, true);
+                                world.setBlockState(pos, state.cycle(ENABLED));
+                            }
+                            case HEAVY -> {
+                                ItemStack Ammo_1 = new ItemStack(MCPaintballItems.ROCKET_AMMO, 24);
+                                ItemStack Ammo_2 = new ItemStack(MCPaintballItems.BASIC_AMMO, 32);
+                                player.dropItem(Ammo_2, true);
+                                player.dropItem(Ammo_1, true);
+                                world.setBlockState(pos, state.cycle(ENABLED));
+                            }
+                            case MEDIC, ENGINEER -> {
+                                ItemStack Ammo_1 = new ItemStack(MCPaintballItems.SHELL_AMMO, 24);
+                                ItemStack Ammo_2 = new ItemStack(MCPaintballItems.BASIC_AMMO, 32);
+                                player.dropItem(Ammo_2, true);
+                                player.dropItem(Ammo_1, true);
+                                world.setBlockState(pos, state.cycle(ENABLED));
+                            }
                         }
                     }
                 }
@@ -72,7 +76,7 @@ public class AmmoPodBlock extends Block {
 
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        if (PaintballMatchData.getServerState(world.getServer()).IsEnabled) {
+        if (PaintballMatchData.getServerState(world.getServer()).Started) {
             if (!state.get(ENABLED)) {
                 world.setBlockState(pos, state.cycle(ENABLED));
             }
@@ -83,12 +87,15 @@ public class AmmoPodBlock extends Block {
     @Nullable
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return super.getPlacementState(ctx).with(ENABLED, true);
+        PlayerEntity player = ctx.getPlayer();
+        int T = ((IEntityDataSaver) player).getPersistentData().getInt("team");
+        return super.getPlacementState(ctx).with(ENABLED, true).with(TEAM, T);
     }
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         super.appendProperties(builder);
         builder.add(ENABLED);
+        builder.add(TEAM);
     }
 }

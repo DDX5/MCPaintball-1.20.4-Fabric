@@ -35,6 +35,9 @@ processResources {
 tasks.withType(JavaCompile).configureEach {
 	it.options.release = 17
 }
+loom{
+	accessWidenerPath = file("src/main/resources/mcpaintball.accesswidener")
+}
 
 java {
 	withSourcesJar()

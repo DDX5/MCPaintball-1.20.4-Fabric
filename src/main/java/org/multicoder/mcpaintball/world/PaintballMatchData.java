@@ -8,7 +8,8 @@ import org.multicoder.mcpaintball.MCPaintball;
 
 public class PaintballMatchData extends PersistentState {
     private static final Type<PaintballMatchData> type = new Type<>(PaintballMatchData::new, PaintballMatchData::createFromNBT, null);
-    public boolean IsEnabled;
+    public boolean Started;
+    public boolean MatchSetup;
     public int[] Points;
 
     public static PaintballMatchData getServerState(MinecraftServer server) {
@@ -20,16 +21,18 @@ public class PaintballMatchData extends PersistentState {
 
     public static PaintballMatchData createFromNBT(NbtCompound nbt) {
         PaintballMatchData data = new PaintballMatchData();
-        data.IsEnabled = nbt.getBoolean("enabled");
+        data.Started = nbt.getBoolean("started");
         data.Points = nbt.getIntArray("points");
+        data.MatchSetup = nbt.getBoolean("setup");
         return data;
     }
 
 
     @Override
     public NbtCompound writeNbt(NbtCompound nbt) {
-        nbt.putBoolean("enabled", IsEnabled);
+        nbt.putBoolean("started", Started);
         nbt.putIntArray("points", Points);
+        nbt.putBoolean("setup",MatchSetup);
         return nbt;
     }
 }

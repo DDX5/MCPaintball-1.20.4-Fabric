@@ -1,0 +1,33 @@
+{
+	"textures": {
+		"0": "mcpaintball:item/plain/purple",
+		"1": "mcpaintball:item/plain/white",
+		"particle": "mcpaintball:item/plain/silver"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0],
+			"to": [16, 5, 16],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 5], "texture": "#0"},
+				"east": {"uv": [0, 0, 16, 5], "texture": "#0"},
+				"south": {"uv": [0, 0, 16, 5], "texture": "#0"},
+				"west": {"uv": [0, 0, 16, 5], "texture": "#0"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#0"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#0"}
+			}
+		},
+		{
+			"from": [5, 5, 5],
+			"to": [11, 17, 11],
+			"faces": {
+				"north": {"uv": [0, 0, 6, 12], "texture": "#1"},
+				"east": {"uv": [0, 0, 6, 12], "texture": "#1"},
+				"south": {"uv": [0, 0, 6, 12], "texture": "#1"},
+				"west": {"uv": [0, 0, 6, 12], "texture": "#1"},
+				"up": {"uv": [0, 0, 6, 6], "texture": "#1"},
+				"down": {"uv": [0, 0, 6, 6], "texture": "#1"}
+			}
+		}
+	]
+}

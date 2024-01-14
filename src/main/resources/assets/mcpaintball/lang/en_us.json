@@ -25,6 +25,7 @@
 
   "Comment_2": "Blocks",
   "block.mcpaintball.ammo_pod": "Ammo Pod",
+  "block.mcpaintball.explosive_station": "Explosive Station",
   "block.mcpaintball.red_explosive": "Red C4",
   "block.mcpaintball.green_explosive": "Green C4",
   "block.mcpaintball.blue_explosive": "Blue C4",
@@ -57,12 +58,14 @@
   "entity.mcpaintball.purple_grenade": "Purple Grenade",
 
   "Comment_4": "Command Responses",
-  "mcpaintball.command.response.team.set": "Your team has been set to %s",
-  "mcpaintball.command.response.class.set": "Your class has been set to %s",
+  "mcpaintball.command.response.team.set": "Your team has been set to",
+  "mcpaintball.command.response.class.set": "Your class has been set to",
   "mcpaintball.command.response.team.winner": "The Winning Team Is %s",
   "mcpaintball.command.response.match.start": "Match Has Started (Keeping Inventory Is Now Enabled)",
   "mcpaintball.command.response.match.end": "Match Has Ended (Keeping Inventory Is Now Disabled)",
   "mcpaintball.command.response.match.error": "You Do Not Have Permission To Run This Command",
+  "mcpaintball.command.response.match.setup": "Match Has Been Setup, Chose Your Team And Class Now",
+  "mcpaintball.command.response.settings": "You Cannot Run This Command When The Match Has Started\nOr When The Match Has Not Been Setup",
 
   "Comment_5": "Player Messages",
   "text.mcpaintball.ammo": "You Have %s Ammo Left",
@@ -71,6 +74,23 @@
   "text.mcpaintball.reloading": "Reloading Weapon",
   "text.mcpaintball.no_tag": "This Item Has No Valid Targets",
   "text.mcpaintball.invalid_team": "Invalid Team",
+
+  "text.mcpaintball.class.standard": "Standard",
+  "text.mcpaintball.class.medical": "Medic",
+  "text.mcpaintball.class.sniper": "Sniper",
+  "text.mcpaintball.class.engineer": "Engineer",
+  "text.mcpaintball.class.heavy": "Heavy",
+
+  "text.mcpaintball.team.red": "Red",
+  "text.mcpaintball.team.green": "Green",
+  "text.mcpaintball.team.blue": "Blue",
+  "text.mcpaintball.team.cyan": "Cyan",
+  "text.mcpaintball.team.magenta": "Magenta",
+  "text.mcpaintball.team.lime": "Lime",
+  "text.mcpaintball.team.light_blue": "Light Blue",
+  "text.mcpaintball.team.pink": "Pink",
+  "text.mcpaintball.team.purple": "Purple",
+
 
   "Comment_6": "Subtitles",
   "subtitle.mcpaintball.shot": "Shot Fired",

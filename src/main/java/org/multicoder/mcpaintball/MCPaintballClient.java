@@ -12,6 +12,7 @@ import org.multicoder.mcpaintball.entity.rockets.*;
 import org.multicoder.mcpaintball.network.MCPaintballNetworking;
 import org.multicoder.mcpaintball.player.PlayerKeyInputs;
 
+@SuppressWarnings("unchecked")
 public class MCPaintballClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {

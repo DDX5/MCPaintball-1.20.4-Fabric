@@ -14,6 +14,7 @@ import net.minecraft.world.explosion.Explosion;
 import org.multicoder.mcpaintball.entity.MCPaintballEntities;
 import org.multicoder.mcpaintball.item.MCPaintballItems;
 import org.multicoder.mcpaintball.utility.PaintballTeam;
+import org.multicoder.mcpaintball.utility.anticheats.AntiCheatCommon;
 import org.multicoder.mcpaintball.utility.interfaces.IEntityDataSaver;
 import org.multicoder.mcpaintball.world.PaintballMatchData;
 
@@ -35,7 +36,7 @@ public class MagentaGrenadeEntity extends ThrownItemEntity {
         if (!this.getEntityWorld().isClient()) {
             PaintballMatchData levelData = PaintballMatchData.getServerState(this.getServer());
             BlockPos Position = BlockPos.ofFloored(hitResult.getPos());
-            Explosion E = this.getEntityWorld().createExplosion(this, Position.getX(), Position.getY(), Position.getZ(), 5, World.ExplosionSourceType.TNT);
+            Explosion E = this.getEntityWorld().createExplosion(this,this.getEntityWorld().getDamageSources().explosion(this,this.getOwner()), new AntiCheatCommon.SafeExplosion(),Position.getX(),Position.getY(),Position.getZ(),5f,false, World.ExplosionSourceType.TNT);
             List<PlayerEntity> Players = E.getAffectedPlayers().keySet().stream().toList();
             for (PlayerEntity player : Players) {
                 NbtCompound data = ((IEntityDataSaver) player).getPersistentData();

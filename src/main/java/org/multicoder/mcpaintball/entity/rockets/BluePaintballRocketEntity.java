@@ -13,6 +13,7 @@ import net.minecraft.world.explosion.Explosion;
 import org.multicoder.mcpaintball.config.MCPaintballConfig;
 import org.multicoder.mcpaintball.entity.MCPaintballEntities;
 import org.multicoder.mcpaintball.utility.PaintballTeam;
+import org.multicoder.mcpaintball.utility.anticheats.AntiCheatCommon;
 import org.multicoder.mcpaintball.utility.interfaces.IEntityDataSaver;
 import org.multicoder.mcpaintball.world.PaintballMatchData;
 
@@ -34,10 +35,13 @@ public class BluePaintballRocketEntity extends PersistentProjectileEntity {
             BlockPos Position = blockHitResult.getBlockPos();
             PaintballMatchData levelData = PaintballMatchData.getServerState(this.getServer());
             Explosion E;
-            if (MCPaintballConfig.BLOCKS_BREAK) {
-                E = this.getEntityWorld().createExplosion(this, Position.getX(), Position.getY(), Position.getZ(), 5, World.ExplosionSourceType.TNT);
-            } else {
-                E = this.getEntityWorld().createExplosion(this, Position.getX(), Position.getY(), Position.getZ(), 5, World.ExplosionSourceType.NONE);
+            if(MCPaintballConfig.BLOCKS_BREAK)
+            {
+                E = this.getEntityWorld().createExplosion(this,this.getEntityWorld().getDamageSources().explosion(this,this.getOwner()), new AntiCheatCommon.SafeExplosion(),Position.getX(),Position.getY(),Position.getZ(),5f,false, World.ExplosionSourceType.TNT);
+            }
+            else
+            {
+                E = this.getEntityWorld().createExplosion(this,this.getEntityWorld().getDamageSources().explosion(this,this.getOwner()), new AntiCheatCommon.SafeExplosion(),Position.getX(),Position.getY(),Position.getZ(),5f,false, World.ExplosionSourceType.NONE);
             }
             List<PlayerEntity> Players = E.getAffectedPlayers().keySet().stream().toList();
             for (PlayerEntity player : Players) {

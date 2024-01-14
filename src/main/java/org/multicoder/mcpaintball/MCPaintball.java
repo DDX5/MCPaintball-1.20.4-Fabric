@@ -20,7 +20,8 @@ public class MCPaintball implements ModInitializer {
     public static final Logger LOGGER = LoggerFactory.getLogger(MCPaintball.MOD_ID);
 
     @Override
-    public void onInitialize() {
+    public void onInitialize()
+    {
         MCPaintballItems.registerModItems();
         MCPaintballBlocks.registerModBlocks();
         MCPaintballEntities.registerModEntities();

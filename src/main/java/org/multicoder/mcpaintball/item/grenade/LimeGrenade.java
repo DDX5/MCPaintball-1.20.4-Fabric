@@ -21,7 +21,7 @@ public class LimeGrenade extends Item {
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         if (!world.isClient()) {
             PaintballMatchData data = PaintballMatchData.getServerState(world.getServer());
-            if (data.IsEnabled) {
+            if (data.Started) {
                 ThrownItemEntity E = new LimeGrenadeEntity(user, world);
                 E.setVelocity(user, user.getPitch(), user.getYaw(), user.getRoll(), 3, 0);
                 world.spawnEntity(E);

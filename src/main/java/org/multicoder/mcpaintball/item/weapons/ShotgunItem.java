@@ -33,7 +33,7 @@ public class ShotgunItem extends IReloadableWeapon {
             NbtCompound compound = persistantData.getPersistentData();
             if (compound.contains("team")) {
                 PaintballMatchData data = PaintballMatchData.getServerState(user.getServer());
-                if (data.IsEnabled) {
+                if (data.Started) {
                     if (Held.getDamage() != Held.getMaxDamage()) {
                         PaintballTeam team = PaintballTeam.values()[compound.getInt("team")];
                         PersistentProjectileEntity arrow = team.getPaintball(user, world);
